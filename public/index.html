@@ -13,15 +13,35 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
-    <title>FishEye</title>
+    <title>Les petits plats</title>
   </head>
 
   <body>
     <header class="header">
+      <img
+        class="header__logo"
+        src="media/logo.png"
+        alt="Les petits plats"
+        role="logo header"
+      />
     </header>
-
+    <section id="search">
+      <div id="search-bar" class="search-bar">
+        <input class="search-bar__text" id="search-bar__text" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+          
+        </input>
+        <i class="fas fa-search search-bar__icon"></i>
+      </div>
+      <div class="result-filter" id="result-filter"></div>
+      <div class="dropdown">
+        <div class="dropdown-ingredient" id="dropdown-ingredient"></div>
+        <div class="dropdown-device" id="dropdown-device"></div>
+        <div class="dropdown-utensils" id="dropdown-utensils"></div>
+      </div>
+    </section>
+    <section class="container-card" id="container-card"></section>
 
     <footer></footer>
-    <script src="../javascript/index/main.js"></script>
+    <script src="./javascript/index/main.js"></script>
   </body>
 </html>
