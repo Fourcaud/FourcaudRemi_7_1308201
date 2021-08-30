@@ -32,6 +32,7 @@
         <i class="fas fa-search search-bar__icon"></i>
       </div>
       <div class="result-filter" id="result-filter"></div>
+      <div class="container-label" id="container-label"></div>
       <div class="dropdown">
         <div class="dropdown-ingredient" id="dropdown-ingredient">
           <button onclick="myFunctionTriIngredient()" class="dropbtn-ingredient" aria-expanded="true" aria-controls="id_about_menu" tabindex="0">Ingredients<i class="fas fa-chevron-down" ></i></button>
@@ -42,7 +43,7 @@
            </div>
         </div>
 
-        <div class="dropdown-device" id="dropdown-device">
+        <div class="dropdown-device" id="dropdown-device">          
           <button onclick="myFunctionTriDevice()" class="dropbtn-device" aria-expanded="true" aria-controls="id_about_menu" tabindex="0">Appareil<i class="fas fa-chevron-down"></i></button>
           <div id="myDropdown-device" class="dropdown-content-device" id="id_about_menu" >
           <div class="flex-search"><input tabindex="0" placeholder="Recherche un Appareil" id="searchDevice" class="searchDevice"><i class="fas fa-chevron-up" onclick="myFunctionTriDevice()"></i></input></div>
@@ -51,6 +52,7 @@
           </div>
         </div>
 
+      <div>
         <div class="dropdown-utensils" id="dropdown-utensils">
          <button onclick="myFunctionTriUtensils()" class="dropbtn-utensils" aria-expanded="true" aria-controls="id_about_menu" tabindex="0">Ustensils<i class="fas fa-chevron-down"></i></button>
             <div id="myDropdown-utensils" class="dropdown-content-utensils" id="id_about_menu" >
@@ -59,6 +61,7 @@
                 </div>
             </div>
         </div>
+      </div>
       </div>
     </section>
     <section class="container-card" id="container-card"></section>
