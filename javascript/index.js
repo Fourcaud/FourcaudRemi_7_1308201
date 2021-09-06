@@ -13,44 +13,47 @@ const filtreAtif = [];
 function fetchRecipes(recipes) {
   let recipeContainer = document.getElementById("container-card");
   let htmlrecipe = "";
-  if (filtreAtif.length > 0) {
-    for (let actif in filtreAtif) {
+  const myArrayFromLocalStorage = localStorage.getItem("filtre");
+  if (myArrayFromLocalStorage && myArrayFromLocalStorage.length) {
+    const myArray = JSON.parse(myArrayFromLocalStorage);
+    for (let array in myArray) {
+      const elements = myArray[array];
+
       const result1 = recipes.filter((search) =>
-        search.name.toLowerCase().includes(filtreAtif)
+        search.name.toLowerCase().includes(elements)
       );
 
       const result2 = recipes.filter((search) =>
-        search.appliance.toLowerCase().includes(filtreAtif)
+        search.appliance.toLowerCase().includes(elements)
       );
 
       const result3 = recipes.filter((search) =>
         search.ingredients.some((searchArray) =>
-          searchArray.ingredient.toLowerCase().includes(filtreAtif)
+          searchArray.ingredient.toLowerCase().includes(elements)
         )
       );
 
       const result4 = recipes.filter((search) =>
         search.ustensils.some((searchArray) =>
-          searchArray.toLowerCase().includes(filtreAtif)
+          searchArray.toLowerCase().includes(elements)
         )
       );
-    }
 
-    function removeDuplicates(inArray) {
-      let arr = inArray.concat();
+      function removeDuplicates(inArray) {
+        let arr = inArray.concat();
 
-      for (let i = 0; i < arr.length; ++i) {
-        for (let j = i + 1; j < arr.length; ++j) {
-          if (arr[i] === arr[j]) {
-            arr.splice(j, 1);
+        for (let i = 0; i < arr.length; ++i) {
+          for (let j = i + 1; j < arr.length; ++j) {
+            if (arr[i] === arr[j]) {
+              arr.splice(j, 1);
+            }
           }
         }
+        return arr;
       }
-      return arr;
-    }
-    const resultAll = result1.concat(result2, result3, result4);
-    const result = removeDuplicates(resultAll);
-    if (result.length > 0) {
+      const resultAll = result1.concat(result2, result3, result4);
+      const result = removeDuplicates(resultAll);
+
       for (let recipe in result) {
         htmlrecipe += `<div class="card">`;
         htmlrecipe += `<div class="card__img"></div>`;
@@ -156,6 +159,7 @@ function myFunctionTriIngredient() {
 window.myFunctionTriIngredient = myFunctionTriIngredient;
 
 const searchIn = document.getElementById("searchIngredients");
+
 function ingredientFilter(recipes) {
   searchIn.addEventListener("input", (e) => {
     const element = e.target.value.toLowerCase();
@@ -164,11 +168,11 @@ function ingredientFilter(recipes) {
         searchArray.ingredient.toLowerCase().includes(element)
       )
     );
-    result.push({ search: element });
     showTriIngredient(result);
   });
 }
 window.ingredientFilter = ingredientFilter;
+
 function clickIngredient(x) {
   filtreAtif.push(x);
   let uniqueTypes = filtreAtif.filter(
@@ -181,7 +185,7 @@ window.clickIngredient = clickIngredient;
 function showLabelIngredient(name) {
   let labelIngredient = document.getElementById("container-label");
   let htmllabelIngredient = "";
-  htmllabelIngredient += `<div>${name}</div>`;
+  htmllabelIngredient += `<div class="labelIngredient">${name}<i class="far fa-times-circle"></i></div>`;
   labelIngredient.innerHTML = htmllabelIngredient;
 }
 window.showLabelIngredient = showLabelIngredient;
@@ -258,7 +262,7 @@ window.clickDevice = clickDevice;
 function showLabelDevice(name) {
   let labelDevice = document.getElementById("container-label");
   let htmllabelDevice = "";
-  htmllabelDevice += `<div>${name}</div>`;
+  htmllabelDevice += `<div class="labelDevice">${name}<i class="far fa-times-circle"></i></div>`;
   labelDevice.innerHTML = htmllabelDevice;
 }
 window.showLabelDevice = showLabelDevice;
@@ -333,21 +337,34 @@ function utensilsFilter(recipes) {
 window.utensilsFilter = utensilsFilter;
 
 function clickUtensil(x) {
-  filtreAtif.push(x);
-  let uniqueTypes = filtreAtif.filter(
-    (value, index, self) => self.indexOf(value) === index
-  );
-  showLabelUtensil(uniqueTypes);
+  const myArrayFromLocalStorage = localStorage.getItem("filtre");
+  if (myArrayFromLocalStorage && myArrayFromLocalStorage.length) {
+    const myArray = JSON.parse(myArrayFromLocalStorage);
+    for (let array in myArray) {
+      const elements = myArray[array];
 
-  fetchRecipes(recipes);
+      filtreAtif.push(elements);
+    }
+  }
+  filtreAtif.push(x);
+  localStorage.setItem("filtre", JSON.stringify(filtreAtif));
+  window.location.reload();
 }
 window.clickUtensil = clickUtensil;
 
-function showLabelUtensil(name) {
-  let labelUtensil = document.getElementById("container-label");
-  let htmllabelUtensil = "";
-  htmllabelUtensil += `<div>${name}</div>`;
-  labelUtensil.innerHTML = htmllabelUtensil;
+function showLabelUtensil() {
+  const myArrayFromLocalStorage = localStorage.getItem("filtre");
+  if (myArrayFromLocalStorage && myArrayFromLocalStorage.length) {
+    const myArray = JSON.parse(myArrayFromLocalStorage);
+    let labelUtensil = document.getElementById("container-label");
+    let htmllabelUtensil = "";
+    for (let array in myArray) {
+      const elements = myArray[array];
+
+      htmllabelUtensil += `<div class="labelUtensil">${elements}<i class="far fa-times-circle"></i></div>`;
+    }
+    labelUtensil.innerHTML = htmllabelUtensil;
+  }
 }
 window.showLabelUtensil = showLabelUtensil;
 
@@ -412,4 +429,5 @@ fetchData((recipes) => {
   ingredientFilter(recipes);
   deviceFilter(recipes);
   utensilsFilter(recipes);
+  showLabelUtensil();
 });

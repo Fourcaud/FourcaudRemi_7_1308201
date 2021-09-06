@@ -426,6 +426,37 @@
   text-align: left;
 }
 
+.container-label {
+  color: black;
+}
+
+/* .labelIngredient {
+  width: 100px;
+  height: 40px;
+  background: #3282f7;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.labelDevice {
+  width: 100px;
+  height: 40px;
+  background: #68d9a4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+.labelUtensil {
+  width: 100px;
+  height: 40px;
+  background: #ed6454;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+} */
 .container-card {
   display: flex;
   flex-direction: row;
