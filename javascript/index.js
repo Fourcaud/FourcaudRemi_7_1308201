@@ -16,6 +16,7 @@ function fetchRecipes(recipes) {
   const myArrayFromLocalStorage = localStorage.getItem("filtre");
   if (myArrayFromLocalStorage && myArrayFromLocalStorage.length) {
     const myArray = JSON.parse(myArrayFromLocalStorage);
+    const result = [];
     for (let array in myArray) {
       const elements = myArray[array];
 
@@ -52,28 +53,49 @@ function fetchRecipes(recipes) {
         return arr;
       }
       const resultAll = result1.concat(result2, result3, result4);
-      const result = removeDuplicates(resultAll);
 
-      for (let recipe in result) {
-        htmlrecipe += `<div class="card">`;
-        htmlrecipe += `<div class="card__img"></div>`;
-        htmlrecipe += `<div class="card__recipe"> <h2>${result[recipe].name}</h2> <i class="far fa-clock"></i><h3>${result[recipe].time}min</h3></div>`;
-        htmlrecipe += `<div class="card__text"><div class="card__ingredients">`;
-
-        for (let ingredientLoop in result[recipe].ingredients) {
-          let unitTrue = "";
-          if (result[recipe].ingredients[ingredientLoop].unit) {
-            unitTrue = result[recipe].ingredients[ingredientLoop].unit;
-          }
-          htmlrecipe += `<h4>${result[recipe].ingredients[ingredientLoop].ingredient} : ${result[recipe].ingredients[ingredientLoop].quantity} ${unitTrue} </h4>`;
-        }
-        htmlrecipe += `</div>`;
-        htmlrecipe += `<div class="card__description"><p>${result[recipe].description}</p></div>`;
-        htmlrecipe += `</div>`;
-        htmlrecipe += `</div>`;
-      }
-      recipeContainer.innerHTML = htmlrecipe;
+      const resultPush = removeDuplicates(resultAll);
+      result.push(resultPush);
     }
+
+    const resultUnique = [];
+    if (result.length > 1) {
+      for (let i = 0; i < result.length; i++) {
+        for (let j = i + 1; j < result.length; j++) {
+          for (let array1 in result[i]) {
+            for (let array2 in result[j]) {
+              if (result[i][array1] === result[j][array2]) {
+                resultUnique.push(result[i][array1]);
+              }
+            }
+          }
+        }
+      }
+    } else {
+      for (let array1 in result[0]) {
+        resultUnique.push(result[0][array1]);
+      }
+    }
+
+    for (let recipe in resultUnique) {
+      htmlrecipe += `<div class="card">`;
+      htmlrecipe += `<div class="card__img"></div>`;
+      htmlrecipe += `<div class="card__recipe"> <h2>${resultUnique[recipe].name}</h2> <i class="far fa-clock"></i><h3>${resultUnique[recipe].time}min</h3></div>`;
+      htmlrecipe += `<div class="card__text"><div class="card__ingredients">`;
+
+      for (let ingredientLoop in resultUnique[recipe].ingredients) {
+        let unitTrue = "";
+        if (resultUnique[recipe].ingredients[ingredientLoop].unit) {
+          unitTrue = resultUnique[recipe].ingredients[ingredientLoop].unit;
+        }
+        htmlrecipe += `<h4>${resultUnique[recipe].ingredients[ingredientLoop].ingredient} : ${resultUnique[recipe].ingredients[ingredientLoop].quantity} ${unitTrue} </h4>`;
+      }
+      htmlrecipe += `</div>`;
+      htmlrecipe += `<div class="card__description"><p>${resultUnique[recipe].description}</p></div>`;
+      htmlrecipe += `</div>`;
+      htmlrecipe += `</div>`;
+    }
+    recipeContainer.innerHTML = htmlrecipe;
   } else {
     if (recipes.length > 0) {
       for (let recipe in recipes) {
@@ -119,17 +141,29 @@ function showTriIngredient(recipes) {
           .includes(recipes[recipes.length - 1].search) ||
         !recipes[recipes.length - 1].search
       ) {
-        allIngredient.push(recipes[i].ingredients[j].ingredient);
+        allIngredient.push(recipes[i].ingredients[j].ingredient.toLowerCase());
       }
     }
-    let uniqueTypes = allIngredient.filter(
-      (value, index, self) => self.indexOf(value) === index
-    );
-    for (let l in uniqueTypes) {
-      htmlnavFiltre += `<li onclick='clickIngredient("${uniqueTypes[l]}")'><input  type="checkbox" class="check" id="${uniqueTypes[l]}" name="header__tags" value="${uniqueTypes[l]}"><label class="labeltags">${uniqueTypes[l]}</label></li>`;
-    }
-    navFiltre.innerHTML = htmlnavFiltre;
   }
+  let uniqueAllIngredients = removeDuplicates(allIngredient);
+
+  function removeDuplicates(inArray) {
+    let arr = inArray.concat();
+
+    for (let i = 0; i < arr.length; ++i) {
+      for (let j = i + 1; j < arr.length; ++j) {
+        if (arr[i] === arr[j]) {
+          arr.splice(j, 1);
+        }
+      }
+    }
+    return arr;
+  }
+
+  for (let l in uniqueAllIngredients) {
+    htmlnavFiltre += `<li onclick='clickLabel("${uniqueAllIngredients[l]}")'><input  type="checkbox" class="check" id="${uniqueAllIngredients[l]}" name="header__tags" value="${uniqueAllIngredients[l]}"><label class="labeltags">${uniqueAllIngredients[l]}</label></li>`;
+  }
+  navFiltre.innerHTML = htmlnavFiltre;
 }
 
 function myFunctionTriIngredient() {
@@ -182,14 +216,6 @@ function clickIngredient(x) {
 }
 window.clickIngredient = clickIngredient;
 
-function showLabelIngredient(name) {
-  let labelIngredient = document.getElementById("container-label");
-  let htmllabelIngredient = "";
-  htmllabelIngredient += `<div class="labelIngredient">${name}<i class="far fa-times-circle"></i></div>`;
-  labelIngredient.innerHTML = htmllabelIngredient;
-}
-window.showLabelIngredient = showLabelIngredient;
-
 /* ---------------------------------------------------------------------------- */
 
 //Groupe de fonction qui permet d'afficher les devices dans le bouton
@@ -208,7 +234,7 @@ function showTriDevice(recipes) {
   );
 
   for (let l in uniqueTypes) {
-    htmlnavFiltre += `<li onclick='clickDevice("${uniqueTypes[l]}")'><input  type="checkbox" class="check" id="${uniqueTypes[l]}" name="header__tags" ><label class="labeltags">${uniqueTypes[l]}</label></li>`;
+    htmlnavFiltre += `<li onclick='clickLabel("${uniqueTypes[l]}")'><input  type="checkbox" class="check" id="${uniqueTypes[l]}" name="header__tags" ><label class="labeltags">${uniqueTypes[l]}</label></li>`;
   }
 
   navFiltre.innerHTML = htmlnavFiltre;
@@ -259,13 +285,6 @@ function clickDevice(x) {
 }
 window.clickDevice = clickDevice;
 
-function showLabelDevice(name) {
-  let labelDevice = document.getElementById("container-label");
-  let htmllabelDevice = "";
-  htmllabelDevice += `<div class="labelDevice">${name}<i class="far fa-times-circle"></i></div>`;
-  labelDevice.innerHTML = htmllabelDevice;
-}
-window.showLabelDevice = showLabelDevice;
 /* ---------------------------------------------------------------------------- */
 
 //Groupe de fonction qui permet d'afficher les ustensils dans le bouton
@@ -290,7 +309,7 @@ function showTriUtensils(recipes) {
     (value, index, self) => self.indexOf(value) === index
   );
   for (let l in uniqueTypes) {
-    htmlnavFiltre += `<li onclick='clickUtensil("${uniqueTypes[l]}")'><input  type="checkbox" class="check" id="${uniqueTypes[l]}" name="header__tags"><label class="labeltags">${uniqueTypes[l]}</label></li>`;
+    htmlnavFiltre += `<li onclick='clickLabel("${uniqueTypes[l]}")'><input  type="checkbox" class="check" id="${uniqueTypes[l]}" name="header__tags"><label class="labeltags">${uniqueTypes[l]}</label></li>`;
   }
   navFiltre.innerHTML = htmlnavFiltre;
 }
@@ -336,7 +355,7 @@ function utensilsFilter(recipes) {
 }
 window.utensilsFilter = utensilsFilter;
 
-function clickUtensil(x) {
+function clickLabel(x) {
   const myArrayFromLocalStorage = localStorage.getItem("filtre");
   if (myArrayFromLocalStorage && myArrayFromLocalStorage.length) {
     const myArray = JSON.parse(myArrayFromLocalStorage);
@@ -350,9 +369,9 @@ function clickUtensil(x) {
   localStorage.setItem("filtre", JSON.stringify(filtreAtif));
   window.location.reload();
 }
-window.clickUtensil = clickUtensil;
+window.clickLabel = clickLabel;
 
-function showLabelUtensil() {
+function showLabel() {
   const myArrayFromLocalStorage = localStorage.getItem("filtre");
   if (myArrayFromLocalStorage && myArrayFromLocalStorage.length) {
     const myArray = JSON.parse(myArrayFromLocalStorage);
@@ -361,12 +380,12 @@ function showLabelUtensil() {
     for (let array in myArray) {
       const elements = myArray[array];
 
-      htmllabelUtensil += `<div class="labelUtensil">${elements}<i class="far fa-times-circle"></i></div>`;
+      htmllabelUtensil += `<div class="label">${elements}<i class="far fa-times-circle"></i></div>`;
     }
     labelUtensil.innerHTML = htmllabelUtensil;
   }
 }
-window.showLabelUtensil = showLabelUtensil;
+window.showLabel = showLabel;
 
 /* ---------------------------------------------------------------------------- */
 
@@ -429,5 +448,5 @@ fetchData((recipes) => {
   ingredientFilter(recipes);
   deviceFilter(recipes);
   utensilsFilter(recipes);
-  showLabelUtensil();
+  showLabel();
 });

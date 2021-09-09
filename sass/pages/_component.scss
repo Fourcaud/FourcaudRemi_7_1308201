@@ -40,6 +40,7 @@
   }
 }
 .container-label {
+  display: flex;
   color: black;
 }
 /* .labelIngredient {
@@ -69,3 +70,17 @@
   justify-content: space-between;
   border-radius: 5px;
 } */
+.label {
+  height: 40px;
+  background: #ed6454;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 5px;
+  color: #e7e7e7;
+  margin: 10px 10px 0 0;
+  padding: 10px;
+  & i {
+    padding-left: 10px;
+  }
+}
