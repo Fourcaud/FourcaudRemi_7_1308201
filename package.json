@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
-    "js:dev": "npx webpack --entry ./javascript/index.js -o ./public/javascript/index --watch --mode=development",
+    "jsindex:dev": "npx webpack --entry ./javascript/index.js -o ./public/javascript/index --watch --mode=development",
+    "jsutils:dev": "npx webpack --entry ./javascript/utils.js -o ./public/javascript/utils --watch --mode=development",
+    "jsgetdata:dev": "npx webpack --entry ./javascript/getdata.js -o ./public/javascript/getdata --watch --mode=development",
+    "jsrendercard:dev": "npx webpack --entry ./javascript/rendercard.js -o ./public/javascript/rendercard --watch --mode=development",
     "js:prod": "npx webpack --entry ./javascript/index.js -o ./public/javascript/index --mode=production"
   },
   "author": "RF",

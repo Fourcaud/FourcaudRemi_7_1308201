@@ -1,11 +1,7 @@
-//Recuperation de la base de donnée en json
-function fetchData(callback) {
-  fetch("/public/recipes.json")
-    .then((res) => res.json())
-    .then((data) => {
-      callback(data.recipes);
-    });
-}
+import getdata from "./getdata";
+import redercard from "./rendercard";
+import utils from "./utils";
+
 const filtreAtif = [];
 
 //fonction pour afficher toutes les recettes - appeler au debut et a chaque modification de filtre
@@ -13,6 +9,7 @@ const filtreAtif = [];
 function fetchRecipes(recipes) {
   let recipeContainer = document.getElementById("container-card");
   let htmlrecipe = "";
+
   const myArrayFromLocalStorage = localStorage.getItem("filtre");
   if (myArrayFromLocalStorage && myArrayFromLocalStorage.length) {
     const myArray = JSON.parse(myArrayFromLocalStorage);
@@ -42,7 +39,7 @@ function fetchRecipes(recipes) {
 
       function removeDuplicates(inArray) {
         let arr = inArray.concat();
-
+        //foreach map
         for (let i = 0; i < arr.length; ++i) {
           for (let j = i + 1; j < arr.length; ++j) {
             if (arr[i] === arr[j]) {
@@ -77,6 +74,7 @@ function fetchRecipes(recipes) {
       }
     }
 
+    //  resultUnique.forEach(recipe => {
     for (let recipe in resultUnique) {
       htmlrecipe += `<div class="card">`;
       htmlrecipe += `<div class="card__img"></div>`;
