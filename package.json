@@ -9,6 +9,8 @@
     "jsutils:dev": "npx webpack --entry ./javascript/utils.js -o ./public/javascript/utils --watch --mode=development",
     "jsgetdata:dev": "npx webpack --entry ./javascript/getdata.js -o ./public/javascript/getdata --watch --mode=development",
     "jsrendercard:dev": "npx webpack --entry ./javascript/rendercard.js -o ./public/javascript/rendercard --watch --mode=development",
+    "jsdropdown:dev": "npx webpack --entry ./javascript/dropdown.js -o ./public/javascript/dropdown --watch --mode=development",
+    "jsfilter:dev": "npx webpack --entry ./javascript/filter.js -o ./public/javascript/filter --watch --mode=development",
     "js:prod": "npx webpack --entry ./javascript/index.js -o ./public/javascript/index --mode=production"
   },
   "author": "RF",

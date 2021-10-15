@@ -1,73 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <script
-      src="https://kit.fontawesome.com/0dbdefb510.js"
+      src="https://kit.fontawesome.com/6b2f05754f.js"
       crossorigin="anonymous"
     ></script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:100,900i"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Les petits plats</title>
+    <link rel="icon" href="favicon.ico" />
+    <title>Les Petits Plats</title>
   </head>
 
   <body>
-    <header class="header">
-      <img
-        class="header__logo"
-        src="media/logo.png"
-        alt="Les petits plats"
-        role="logo header"
-      />
-    </header>
-    <section id="search">
-      <div id="search-bar" class="search-bar">
-        <input class="search-bar__text" id="search-bar__text" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">          
-        </input>
-        <i class="fas fa-search search-bar__icon"></i>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col navbar navbar-expand">
+          <a class="navbar-brand mx-auto d-block mt-4" href="index.html">
+            <img
+              src="media/logo.png"
+              width="300"
+              alt="Les Petits Plats Homepage"
+            />
+          </a>
+        </nav>
+      </div>
+
+      <div class="row">
+        <div class="col input-group input-group-lg mx-5 mb-4" id="autocomplete">
+          <input
+            class="form-control"
+            id="search-input"
+            type="text"
+            name="search-input"
+            placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+          />
+          <div class="input-group-append">
+            <span id="launch-search" class="input-group-text">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+        </div>
       </div>
       <div class="result-filter" id="result-filter"></div>
       <div class="container-label" id="container-label"></div>
+
       <div class="dropdown">
-
         <div class="dropdown-ingredient" id="dropdown-ingredient">
-          <button onclick="myFunctionTriIngredient()" class="dropbtn-ingredient" aria-expanded="true" aria-controls="id_about_menu" tabindex="0">Ingredients<i class="fas fa-chevron-down" ></i></button>
-          <div id="myDropdown-ingredient" class="dropdown-content-ingredient" id="id_about_menu" >
-          <div class="flex-search"><input tabindex="0" placeholder="Recherche un ingédient" id="searchIngredients" class="searchIngredients"><i class="fas fa-chevron-up" onclick="myFunctionTriIngredient()"></i></input></div>
-          <div class="container-ingredient" id="container-ingredient">
-           </div>
-           </div>
-        </div>
-
-        <div class="dropdown-device" id="dropdown-device">          
-          <button onclick="myFunctionTriDevice()" class="dropbtn-device" aria-expanded="true" aria-controls="id_about_menu" tabindex="0">Appareil<i class="fas fa-chevron-down"></i></button>
-          <div id="myDropdown-device" class="dropdown-content-device" id="id_about_menu" >
-          <div class="flex-search"><input tabindex="0" placeholder="Recherche un Appareil" id="searchDevice" class="searchDevice"><i class="fas fa-chevron-up" onclick="myFunctionTriDevice()"></i></input></div>
-          <div class="container-device" id="container-device">  
-          </div>
-          </div>
-        </div>
-
-      
-        <div class="dropdown-utensils" id="dropdown-utensils">
-         <button onclick="myFunctionTriUtensils()" class="dropbtn-utensils" aria-expanded="true" aria-controls="id_about_menu" tabindex="0">Ustensils<i class="fas fa-chevron-down"></i></button>
-            <div id="myDropdown-utensils" class="dropdown-content-utensils" id="id_about_menu" >
-              <div class="flex-search"><input tabindex="0" placeholder="Recherche un Ustensils" id="searchUtensils" class="searchUtensils"><i class="fas fa-chevron-up" onclick="myFunctionTriUtensils()"></i></input></div>
-                <div class="container-utensils" id="container-utensils">       
-                </div>
+          <button
+            onclick="openAndCloseDropdown('myDropdown-ingredient','show-ingredient','open')"
+            class="dropbtn-ingredient"
+          >
+            Ingredients<i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="myDropdown-ingredient" class="dropdown-content-ingredient">
+            <div class="flex-search">
+              <input
+                tabindex="0"
+                placeholder="Recherche un ingédient"
+                id="searchIngredients"
+                class="searchIngredients"
+              /><i
+                class="fas fa-chevron-up"
+                onclick="openAndCloseDropdown('myDropdown-ingredient','show-ingredient','close')"
+              ></i>
             </div>
+            <div class="container-ingredient" id="container-ingredient"></div>
+          </div>
+        </div>
+
+        <div class="dropdown-device" id="dropdown-device">
+          <button
+            onclick="openAndCloseDropdown('myDropdown-device','show-device','open')"
+            class="dropbtn-device"
+          >
+            Appareil<i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="myDropdown-device" class="dropdown-content-device">
+            <div class="flex-search">
+              <input
+                tabindex="0"
+                placeholder="Recherche un Appareil"
+                id="searchDevice"
+                class="searchDevice"
+              /><i
+                class="fas fa-chevron-up"
+                onclick="openAndCloseDropdown('myDropdown-device','show-device','close')"
+              ></i>
+            </div>
+            <div class="container-device" id="container-device"></div>
+          </div>
+        </div>
+
+        <div class="dropdown-utensils" id="dropdown-utensils">
+          <button
+            onclick="openAndCloseDropdown('myDropdown-utensils','show-utensils','open')"
+            class="dropbtn-utensils"
+          >
+            Ustensils<i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="myDropdown-utensils" class="dropdown-content-utensils">
+            <div class="flex-search">
+              <input
+                tabindex="0"
+                placeholder="Recherche un Ustensils"
+                id="searchUtensils"
+                class="searchUtensils"
+              /><i
+                class="fas fa-chevron-up"
+                onclick="openAndCloseDropdown('myDropdown-utensils','show-utensils','close')"
+              ></i>
+            </div>
+            <div class="container-utensils" id="container-utensils"></div>
+          </div>
         </div>
       </div>
-      
-    </section>
-    <section class="container-card" id="container-card"></section>
 
-    <footer></footer>
-    <script src="./javascript/index/main.js"></script>
+      <div class="card-deck pl-4">
+        <div class="d-flex flex-wrap" id="main"></div>
+      </div>
+    </div>
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module" src="javascript/index/main.js"></script>
   </body>
 </html>

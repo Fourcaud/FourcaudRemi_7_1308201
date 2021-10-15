@@ -9,13 +9,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./javascript/utils.js":
-/*!*****************************!*\
-  !*** ./javascript/utils.js ***!
-  \*****************************/
+/***/ "./javascript/dropdown.js":
+/*!********************************!*\
+  !*** ./javascript/dropdown.js ***!
+  \********************************/
 /***/ (() => {
 
-eval("const create = (elm, attributes) => {\r\n  const element = document.createElement(elm);\r\n  for (let key in attributes) {\r\n    element.setAttribute(key, attributes[key]);\r\n  }\r\n\r\n  return element;\r\n};\r\n\r\nwindow.create = create;\r\n\n\n//# sourceURL=webpack://lespetitsplats/./javascript/utils.js?");
+eval("\n\n//# sourceURL=webpack://lespetitsplats/./javascript/dropdown.js?");
 
 /***/ })
 
@@ -26,7 +26,7 @@ eval("const create = (elm, attributes) => {\r\n  const element = document.create
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./javascript/utils.js"]();
+/******/ 	__webpack_modules__["./javascript/dropdown.js"]();
 /******/ 	
 /******/ })()
 ;
