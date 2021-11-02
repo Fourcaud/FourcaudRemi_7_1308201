@@ -249,8 +249,13 @@ input[type=text] {
     top: 65%;
   }
 
+  .d-flex {
+    flex-direction: column;
+  }
+
   .recipe-card {
     min-width: 90%;
+    max-width: 100%;
   }
 
   #main {
@@ -309,7 +314,7 @@ flex-search {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  width: 138px;
+  width: 150px;
   height: 69px;
   display: flex;
   flex-direction: row;
@@ -359,6 +364,7 @@ flex-search {
   font-weight: 700;
   line-height: 22px;
   letter-spacing: 0em;
+  margin-left: 5%;
 }
 .dropdown-content-ingredient input::placeholder {
   margin-left: 20px;
@@ -426,7 +432,7 @@ flex-search {
   cursor: pointer;
   border-radius: 5px;
   height: 69px;
-  width: 170px;
+  width: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -475,6 +481,7 @@ flex-search {
   font-weight: 700;
   line-height: 22px;
   letter-spacing: 0em;
+  margin-left: 5%;
 }
 .dropdown-content-device input::placeholder {
   margin-left: 20px;
@@ -544,7 +551,7 @@ flex-search {
   cursor: pointer;
   border-radius: 5px;
   height: 69px;
-  width: 170px;
+  width: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -593,6 +600,7 @@ flex-search {
   font-weight: 700;
   line-height: 22px;
   letter-spacing: 0em;
+  margin-left: 5%;
 }
 .dropdown-content-utensils input::placeholder {
   margin-left: 20px;
@@ -612,7 +620,7 @@ flex-search {
   display: flex;
   background: #ed6454;
   justify-content: space-between;
-  width: 138px;
+  width: 150px;
   height: 37px;
   font-family: DM Sans;
   font-size: 18px;

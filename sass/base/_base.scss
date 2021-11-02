@@ -246,9 +246,13 @@ input[type="text"] {
   .card-deck {
     top: 65%;
   }
+  .d-flex {
+    flex-direction: column;
+  }
 
   .recipe-card {
     min-width: 90%;
+    max-width: 100%;
   }
 
   #main {
