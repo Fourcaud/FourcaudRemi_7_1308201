@@ -49,9 +49,10 @@ function addItemsDropdown() {
       }
     });
   });
+  const allIngredientUnique = [...new Set(allIngredient)];
 
-  for (let l in allIngredient) {
-    htmlnavFiltreIngredient += `<li onclick='clickItem("${allIngredient[l]}" , "ingredient")'>${allIngredient[l]}</li>`;
+  for (let l in allIngredientUnique) {
+    htmlnavFiltreIngredient += `<li onclick='clickItem("${allIngredientUnique[l]}" , "ingredient")'>${allIngredientUnique[l]}</li>`;
   }
   navFiltreIngredient.innerHTML = htmlnavFiltreIngredient;
   /*-------------------------------------------------------------------------------------------------------------------------------------------*/
