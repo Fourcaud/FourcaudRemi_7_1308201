@@ -13,31 +13,6 @@ input[type=text] {
   border: none;
 }
 
-.card-img-placeholder {
-  background-color: #c9bdbd;
-  min-height: 200px;
-  border-radius: 10px 10px 0 0;
-}
-
-.recipe-card {
-  background-color: #f8f9fb;
-  border-radius: 10px;
-  min-width: 30%;
-  max-width: 30%;
-  cursor: pointer;
-}
-
-.card-content {
-  font-size: 0.9rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 150px;
-}
-
-.card-content-title {
-  font-size: 1.5rem;
-}
-
 .btn {
   padding: 1.25rem;
   font-weight: 500;
@@ -178,17 +153,6 @@ input[type=text] {
   z-index: 2;
   padding: 0.5rem;
   font-size: 1.2rem;
-}
-
-.card-content-title {
-  min-height: 4rem;
-  max-height: fit-content;
-}
-
-.card-deck {
-  margin: 0 !important;
-  position: absolute;
-  top: 25rem;
 }
 
 .ingredient-container {
@@ -694,6 +658,42 @@ flex-search {
 }
 .labelUtensil i {
   padding-left: 10px;
+}
+
+.card-img-placeholder {
+  background-color: #c9bdbd;
+  min-height: 200px;
+  border-radius: 10px 10px 0 0;
+}
+
+.recipe-card {
+  background-color: #f8f9fb;
+  border-radius: 10px;
+  min-width: 30%;
+  max-width: 30%;
+  cursor: pointer;
+}
+
+.card-content {
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 150px;
+}
+
+.card-content-title {
+  font-size: 1.5rem;
+}
+
+.card-content-title {
+  min-height: 4rem;
+  max-height: fit-content;
+}
+
+.card-deck {
+  margin: 0 !important;
+  position: absolute;
+  top: 25rem;
 }
 
 /*# sourceMappingURL=style.css.map */

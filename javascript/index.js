@@ -18,10 +18,12 @@ const searchUser = document.querySelector("#search-input");
 searchUser.addEventListener("input", (e) => {
   if (e.target.value.length >= 3) {
     const element = e.target.value.toLowerCase();
+
     searchRecipe(element);
   } else {
     let mainSection = document.getElementById("main");
     mainSection.innerHTML = "";
+
     recipeData.forEach((recipe) => createCard(recipe));
   }
 });
