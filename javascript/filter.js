@@ -19,6 +19,7 @@ searchUser.addEventListener("input", (e) => {
     searchRecipe(element);
   } else {
     resultInput = [];
+
     searchEngine();
   }
 });
@@ -103,7 +104,7 @@ function searchEngine() {
   } else {
     allDataFilter = resultInput.concat(resultLabel);
   }
-  if (enableDropdown == 0 && inputLength == 0) {
+  if (enableDropdown == 0 && inputLength < 3) {
     let mainSection = document.getElementById("main");
     mainSection.innerHTML = "";
     recipeData.forEach((recipe) => createCard(recipe));
