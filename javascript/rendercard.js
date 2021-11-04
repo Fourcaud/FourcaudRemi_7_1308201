@@ -84,7 +84,7 @@ let createCard = (recipe) => {
 
   //card container
   let cardContainer = create("article", {
-    class: "card recipe-card pb-3 mb-5",
+    class: "card recipe-card pb-3 ",
   });
 
   //combine to DOM

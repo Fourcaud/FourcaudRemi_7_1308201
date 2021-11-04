@@ -25,11 +25,10 @@ flex-search {
   align-self: baseline;
 }
 .container-ingredient {
-  width: 600px;
-  height: 400px;
+  width: 600 px;
   overflow-x: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   & li {
     width: 33%;
@@ -137,11 +136,11 @@ flex-search {
 }
 /*-----------------------------------------*/
 .container-device {
-  width: 600px;
-  height: 400px;
+  width: 600 px;
+
   overflow-x: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   & li {
     width: 33%;
@@ -223,8 +222,7 @@ flex-search {
   display: flex;
   background: #68d9a4;
   justify-content: space-between;
-  width: 138px;
-  height: 37px;
+
   font-family: DM Sans;
   font-size: 18px;
   font-style: normal;
@@ -250,11 +248,10 @@ flex-search {
 }
 /*-------------------------------------------------------------*/
 .container-utensils {
-  width: 600px;
-  height: 400px;
+  width: 600 px;
   overflow-x: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   & li {
     width: 33%;
@@ -336,8 +333,7 @@ flex-search {
   display: flex;
   background: #ed6454;
   justify-content: space-between;
-  width: 150px;
-  height: 37px;
+
   font-family: DM Sans;
   font-size: 18px;
   font-style: normal;

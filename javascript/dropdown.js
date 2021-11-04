@@ -32,15 +32,16 @@ function liveFilter(element) {
 const deleteItem = (name) => {
   let filtersNoDelete = activeFilters.filter((active) => active.name !== name);
   activeFilters = filtersNoDelete;
+
   liveFilter(activeFilters);
 };
 window.deleteItem = deleteItem;
 
-function addItemsDropdown() {
+function addItemsDropdown(Data) {
   let navFiltreIngredient = document.getElementById("container-ingredient");
   let htmlnavFiltreIngredient = "";
   let allIngredient = [];
-  recipeData.forEach((recipe) => {
+  Data.forEach((recipe) => {
     recipe.ingredients.forEach((element) => {
       if (
         !allIngredient.find((item) => item.ingredient === element.ingredient)
@@ -59,7 +60,7 @@ function addItemsDropdown() {
   let navFiltreUtensils = document.getElementById("container-utensils");
   let htmlnavFiltreUtensils = "";
   let allUtensils = [];
-  recipeData.forEach((recipe) => {
+  Data.forEach((recipe) => {
     recipe.ustensils.forEach((element) => {
       if (!allUtensils.find((item) => item === element)) {
         allUtensils.push(element);
@@ -75,7 +76,7 @@ function addItemsDropdown() {
   let navFiltreDevice = document.getElementById("container-device");
   let htmlnavFiltreDevice = "";
   let allDevice = [];
-  recipeData.forEach((recipe) => {
+  Data.forEach((recipe) => {
     if (!allDevice.find((element) => element === recipe.appliance)) {
       allDevice.push(recipe.appliance);
     }

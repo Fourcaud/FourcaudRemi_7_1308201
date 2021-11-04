@@ -1,0 +1,75 @@
+@media (min-width: 1001px) {
+  .recipe-card {
+    min-width: 30%;
+    max-width: 30%;
+  }
+  .card-deck {
+    top: 25rem;
+  }
+}
+
+/* mobile view */
+
+@media (max-width: 1000px) {
+  body {
+    margin: auto;
+    min-width: fit-content;
+  }
+  .dropdown {
+    margin-left: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-self: baseline;
+    flex-direction: column;
+  }
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tag-search {
+    width: 100%;
+  }
+  .dropbtn-ingredient,
+  .dropbtn-device,
+  .dropbtn-utensils {
+    width: 97%;
+    height: 90px;
+  }
+  .dropdown-content-ingredient,
+  .dropdown-content-device,
+  .dropdown-content-utensils {
+    min-width: 160px;
+    max-width: 97%;
+  }
+  .container-tag-options.show-opts {
+    font-size: 1rem;
+    height: 200px;
+    width: inherit;
+    overflow: hidden;
+  }
+
+  .show-opts .dropdown-choices {
+    flex-wrap: nowrap;
+  }
+
+  .card-deck {
+    top: 45rem;
+    padding-bottom: 100px;
+  }
+
+  .recipe-card {
+    min-width: 90%;
+    max-width: 100%;
+  }
+
+  #main {
+    flex-direction: column;
+  }
+}
